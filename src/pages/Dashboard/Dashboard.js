@@ -29,15 +29,18 @@ const stateCardData = [
     title: "Active batches' Prize Fund",
     balance: "$367,980",
     ETH_QTY: "191.59 ETH",
+    icon: "prizeFundIcon" 
   },
   {
     title: "Active batches' Sold Tickets",
     balance: "167,025 Tickets",
+    icon: "soldTicketsIcon" 
   },
   {
     title: "Total Prize Fund",
     balance: "$1,847,099",
     ETH_QTY: "796,18 ETH",
+    icon: "totalPrizeFundIcon" 
   },
 ];
 
@@ -313,10 +316,10 @@ const Dashboard = () => {
                   </Row>
 
                   <Row className="mt-1 align-items-center">
-                    <Col className="col-sm-auto m-0">
+                    <Col className="col-auto m-0">
                       {trustIcon}
                     </Col>
-                    <Col className="col-sm-auto m-0 p-0">
+                    <Col className="col-auto m-0 p-0">
                       <Button
                         color="link"
                         className="fs-5 m-0 p-0"
@@ -373,7 +376,7 @@ const Dashboard = () => {
                   </Row>
                 </CardBody>
               </Card>
-              
+
             </Col>
           </Row>
           <Row className="my-4">

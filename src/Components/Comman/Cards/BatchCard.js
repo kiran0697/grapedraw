@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
-import {  BsInfoCircle } from "react-icons/bs";
+import { BsInfoCircle } from "react-icons/bs";
 import { TfiArrowCircleLeft, TfiArrowCircleRight } from "react-icons/tfi";
-import { bottomRightShadow, coins, ethereumIcon, topLeftShadow } from "../../../Utils";
-
+import {
+  bottomRightShadow,
+  coins,
+  ethereum,
+  topLeftShadow,
+} from "../../../Utils";
 
 const coinIcons = {
-  ethereumIcon : ethereumIcon
-}
+  ethereumIcon: ethereum,
+};
 
 const BatchCard = ({
-  connectWallet , 
+  connectWallet,
   batchCarddetails: {
     batchNo = "",
-    coinIcon= "",
+    coinIcon = "",
     coinName = "",
     period = "",
     endsIn = "",
     grandPrizes = [],
     ticketPrice = {},
     soldTicket = "",
-    item = ""
-  }}) => {
+    item = "",
+  },
+}) => {
+  const [itemQuantity, setItemQuantity] = useState(item);
+
   return (
     <Card className="border-black mt-4" style={bottomRightShadow}>
       <CardBody>
-        <Row className="fs-4">
-          <Col className="fw-bold">{`Batch #${batchNo}`}</Col>
+        <Row className="">
+          <Col className="fw-bold fs-4">{`Batch #${batchNo}`}</Col>
           <Col className="d-flex justify-content-end gap-2">
-            {coinIcons[coinIcon]}
-            <p>{coinName}</p>
+            <p className="m-0 fw-bold">
+              <span className="me-1">{coinIcons[coinIcon]}</span>
+              {coinName}
+            </p>
           </Col>
         </Row>
         <Row className="mx-0">
@@ -52,18 +61,17 @@ const BatchCard = ({
           </span>
         </Row>
         <Row className="mt-2">
-
-        {grandPrizes.map((prize,index) => <Col key={index}>
-            <Row className="align-items-center">
-              <Col className="col-sm-auto">
-                {coins[prize?.coin || ""]}
-              </Col>
-              <Col className="col-sm-auto">
-                <p className="m-0 fw-bold">{prize?.ETH_QTY || ""}</p>
-                <p className="m-0">{`$${prize?.balance}` || ""}</p>
-              </Col>
-            </Row>
-          </Col> )}
+          {grandPrizes.map((prize, index) => (
+            <Col key={index}>
+              <Row className="align-items-center">
+                <Col className="col-sm-auto">{coins[prize?.coin || ""]}</Col>
+                <Col className="col-sm-auto">
+                  <p className="m-0 fw-bold">{prize?.ETH_QTY || ""}</p>
+                  <p className="m-0">{`$${prize?.balance}` || ""}</p>
+                </Col>
+              </Row>
+            </Col>
+          ))}
         </Row>
         <hr />
         <Row className="align-items-center">
@@ -96,13 +104,18 @@ const BatchCard = ({
                   marginRight: "12px",
                   marginLeft: "7px",
                 }}
-              />{item}
+                onClick={() => {
+                  itemQuantity && setItemQuantity(itemQuantity - 1);
+                }}
+              />
+              {itemQuantity}
               <TfiArrowCircleRight
                 style={{
                   fontSize: "1em",
                   marginLeft: "12px",
                   marginRight: "7px",
                 }}
+                onClick={() => setItemQuantity(itemQuantity + 1)}
               />
             </Button>
           </Col>

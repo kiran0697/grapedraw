@@ -1,0 +1,12 @@
+.state-card :hover {
+  background-color: #fffbd5;
+  border-radius: 13px;
+  outline: 2px solid black;
+}
+
+.state-card :only-child :hover {
+    background-color: #fffbd5;
+    border-radius: 13px;
+    outline: none;
+  }
+  

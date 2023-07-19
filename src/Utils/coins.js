@@ -9,6 +9,7 @@ const coins = {
         borderRadius: "50px",
         border: "2px solid black",
         padding: "5px",
+        boxShadow: "3px 3px black"
       }}
     />,
     coinTwo : <Bs2Circle
@@ -19,6 +20,7 @@ const coins = {
         borderRadius: "50px",
         border: "2px solid black",
         padding: "5px",
+        boxShadow: "3px 3px black"
       }}
     />,
     coinThree : <Bs3Circle
@@ -29,6 +31,7 @@ const coins = {
         borderRadius: "50px",
         border: "2px solid black",
         padding: "5px",
+        boxShadow: "3px 3px black"
       }}
     />
   }
