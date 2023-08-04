@@ -1,14 +1,40 @@
-import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css"
+import React, { useState, createContext } from "react";
+import ActiveBatches from "./components/ActiveBatches";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Wrapper from "./Utils/Wrapper";
 
-import './App.css';
-import Dashboard from './pages/Dashboard/Dashboard';
+export const WalletContext = createContext();
+
+const WalletContextProvider = ({ children }) => {
+  const [metaMaskAccountInfo, setMetaMaskAccountInfo] = useState({
+    isConnected: false,
+    address: null,
+    contractInstance: null,
+    web3: null,
+  });
+
+  return (
+    <WalletContext.Provider
+      value={{ metaMaskAccountInfo, setMetaMaskAccountInfo }}
+    >
+      {children}
+    </WalletContext.Provider>
+  );
+};
 
 function App() {
   return (
     <>
-      <ToastContainer autoClose={2000} limit={2} />
-      <Dashboard/>
+      <WalletContextProvider>
+        <Header />
+        <Wrapper >
+          <Hero />
+          <ActiveBatches />
+          <Footer />
+        </Wrapper>
+      </WalletContextProvider>
     </>
   );
 }
